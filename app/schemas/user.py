@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field, EmailStr, Password
+from pydantic import BaseModel, Field, EmailStr
 
 
 
@@ -7,10 +7,10 @@ class UserCreate(BaseModel):
     email: EmailStr = Field(
         ..., description="User email", json_schema_extra={"example": "test@example.com"}
     )
-    password: Password
+    password: str
 
-   class Config:
-        orm_mode = True
+    class Config:
+        from_attributes = True
 
 
 class UserResponse(BaseModel):
