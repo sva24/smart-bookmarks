@@ -1,7 +1,7 @@
 import logging
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
-
+from app.api.v1.routes.user import router as user
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -15,8 +15,8 @@ logger.addHandler(handler)
 async def lifespan(app: FastAPI):
     logger.info("Приложение запущено.")
     yield
-    await app.state.dishka_container.close()
     logger.info("Приложение остановлено.")
 
 
 app = FastAPI(title="smart bookmark", lifespan=lifespan)
+app.include_router(user, prefix="/api/v1")
