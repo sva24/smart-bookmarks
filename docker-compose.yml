@@ -11,7 +11,7 @@ services:
     environment:
       REDIS_HOST: redis
       REDIS_PORT: 6379
-      DATABASE_URL: postgresql://root:password@db:5432/smart_bookmarks
+      DATABASE_URL: postgresql+asyncpg://root:password@db:5432/smart_bookmarks
 
   db:
     image: postgres:16-alpine
@@ -22,7 +22,7 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: smart_bookmarks
     ports:
-      - "5433:5433"
+      - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
 

@@ -1,7 +1,7 @@
 from app.models.user import User
 from pwdlib import PasswordHash
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.repositories.user_repository import get_user_by_email
+from app.repositories.user_repository import get_user_by_email, create
 from fastapi import HTTPException
 
 password_hash = PasswordHash.recommended()
